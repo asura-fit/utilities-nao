@@ -1,0 +1,5 @@
+[web]
+push_ssl = false
+allow_push = *
+allow_archive = bz2, gz, zip
+
