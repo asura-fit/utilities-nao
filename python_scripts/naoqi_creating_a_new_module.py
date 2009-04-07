@@ -50,7 +50,7 @@ class MyModulePython(ALModule):
 
 # Information concerning our new python broker
 ThisBrokerIP = "127.0.0.1"
-ThisBrokerPort = 9999
+ThisBrokerPort = BPORT
 
 # Creating it 
 try:

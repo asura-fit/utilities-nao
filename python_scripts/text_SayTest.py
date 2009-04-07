@@ -13,7 +13,7 @@ from motion_CurrentConfig import *
 # Create python broker
 
 try:
-  broker = ALBroker("pythonBroker","127.1.0.1",9999,IP, PORT)
+  broker = ALBroker("pythonBroker","127.1.0.1",BPORT,IP, PORT)
 except RuntimeError,e:
   print("cannot connect")
   exit(1)
@@ -37,17 +37,5 @@ except Exception,e:
 #**************************
 
 #going slowly to 1.
-#textProxy.say("ich. nee. sun. she. go. rock. nana. hatch. queue. jew.");
+textProxy.say("Hello World!");
 
-
-
-print "auido"
-
-try:
-  aup = ALProxy("ALAudioPlayer")
-except Exception,e:
-  print "Error when creatin' motion proxy:"
-  print str(e)
-  exit(1)
-
-aup.playFile("/home/root/mac.wav")

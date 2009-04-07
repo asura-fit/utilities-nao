@@ -28,7 +28,7 @@ import time
 
 # IP and PORT default values.
 LOCAL_IP = "127.0.0.1"
-LOCAL_PORT = 9999
+LOCAL_PORT = BPORT
 IP = "127.0.0.1"
 PORT = 9559
 

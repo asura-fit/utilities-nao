@@ -12,7 +12,7 @@ from motion_CurrentConfig import *
 # Create python broker
 
 try:
-  broker = ALBroker("pythonBroker","127.0.0.1",9999,IP, PORT)
+  broker = ALBroker("pythonBroker","127.0.0.1",BPORT,IP, PORT)
 except RuntimeError,e:
   print("cannot connect")
   exit(1)
@@ -69,7 +69,7 @@ motionProxy.setWalkConfig( 0.04, 0.02, 0.02, 0.3, 0.02, 0.018 )
 
 #motionProxy.addWalkStraight( 0.04*4, 25)
 motionProxy.addWalkStraight( 0.04*10, 50)
-motionProxy.addTurn( 0.3*5, 35 )
+#motionProxy.addTurn( 0.3*5, 35 )
 #motionProxy.addWalkSideways(0.02*8, 45)
 #motionProxy.addWalkArc( 0.3*4, 0.3, 25 )
 #motionProxy.addWalkSideways(-0.02*8, 25)
