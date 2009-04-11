@@ -63,7 +63,7 @@ camProxy.setParam(kCameraGainID, cGain)
 
 camProxy.setParam(kCameraAutoGainID, cAutoGain)
 camProxy.setParam(kCameraAutoExpositionID, cAutoExposition)
-camProxy.setParam(kCameraAutoWhiteBalanceD, cAutoWhiteBalance)
+camProxy.setParam(kCameraAutoWhiteBalanceID, cAutoWhiteBalance)
 
 camProxy.setParam(kCameraHFlipID, cHFlip)
 camProxy.setParam(kCameraVFlipID, cVFlip)
