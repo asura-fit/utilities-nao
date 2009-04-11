@@ -1,0 +1,29 @@
+////////////////////////////////////////////////
+/        How to shoot photos!                  /
+/                               11 April, 2009 /
+/                                          sin /
+///////////////////////////////////////////////
+
+-Overview
+This document indicates how to shoot ppm files.
+
+-Workflow
+Step 1:
+    Make a directry named "ppm".
+Step 2:
+    Change configurations in cameraConfig.py.
+Step 3:
+    Compile yuyv2yvu.c
+Step 4:
+    Set AL_DIR.
+Step 5:
+    run shoot.py
+Step 6:
+    Tile ppms in digicame/ppm with tile.
+Step 7:
+    The end. It's simple with a Mac.
+    "What's step 8?"
+    Um... Have some coffee.
+    See there IS one...
+
+
