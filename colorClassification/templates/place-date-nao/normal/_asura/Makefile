@@ -4,7 +4,7 @@
 # NAJIMA Hiroki. ASURA 2004
 #
 
-THRESH = thresh
+THRESH = thresh_nao
 COLOR = asuraColors.txt
 OUTPUTFILE = normal.tm2
 CONVERTER = "/cygdrive/c/Program Files/IrfanView/i_view32"
@@ -40,7 +40,7 @@ maketile:
 		echo $$dir; \
 		count=`find . -name \digicame\*.ppm | wc -l`; \
 		if [ 0 -ne $$count -a ! -e imageyuv.ppm ]; then \
-			tile 3 digicame*.ppm; \
+			tile_nao 3 digicame*.ppm; \
 		fi; \
 		 \
 		); \
