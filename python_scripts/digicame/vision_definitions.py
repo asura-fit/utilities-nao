@@ -55,3 +55,13 @@ kCameraExposureID         = 17
 kCameraSelectID           = 18
 kCameraSetDefaultParamsID = 19
 kCameraColorSpaceID       = 20
+
+#
+OFF = 0;
+ON = 1;
+
+
+#camera select
+cTopCam = 0
+cBottomCam = 1
+
