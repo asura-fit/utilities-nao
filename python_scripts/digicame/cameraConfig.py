@@ -63,7 +63,7 @@ cAutoGain = OFF
 #Auto Exposition
 cAutoExposition = ON
 #Auto WhiteBalance
-cAutoWhiteBalance = ON
+cAutoWhiteBalance = OFF
 
 #Horizontal Flip
 cHFlip = 1
