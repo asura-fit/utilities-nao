@@ -9,7 +9,7 @@ COLOR = asuraColors.txt
 OUTPUTFILE = normal.tm2
 CONVERTER = "/cygdrive/c/Program Files/IrfanView/i_view32"
 
-DIRS := ../Misc ../Ball ../Marker ../Goal ../Aibo ../Field ../NearYellowGoal
+DIRS := ../Misc ../Ball ../Marker ../Goal ../Nao ../Field ../NearYellowGoal
 IMAGE_DIRS := $(wildcard $(addsuffix /*, $(DIRS)))
 LABELPSD = $(wildcard $(addsuffix /*/label.psd, $(DIRS)))
 #LABELS = $(wildcard $(addsuffix /*/label.ppm, $(DIRS)))
@@ -38,9 +38,9 @@ maketile:
 	@for dir in $(IMAGE_DIRS); do \
 		(cd $$dir; \
 		echo $$dir; \
-		count=`find . -name \LAY_H\*.PPM | wc -l`; \
+		count=`find . -name \digicame\*.ppm | wc -l`; \
 		if [ 0 -ne $$count -a ! -e imageyuv.ppm ]; then \
-			tile 3 LAY_H*.PPM; \
+			tile 3 digicame*.ppm; \
 		fi; \
 		 \
 		); \
