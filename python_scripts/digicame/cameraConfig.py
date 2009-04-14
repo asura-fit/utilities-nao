@@ -21,13 +21,13 @@ cAutoWhiteBalance = OFF
 
 # Whitebalance
 # Red Chroma [0, 255]
-cWhiteRed = 76
+cWhiteRed = 80
 
 # Blue Chroma [0, 255]
-cWhiteBlue = 160
+cWhiteBlue = 130
 
 # Gain [0, 255]
-cGain = 4
+cGain = 6
 
 #Exposure [?, ?]
 cExposure = 42

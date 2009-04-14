@@ -6,10 +6,10 @@ th_95, Shoot The Bullet!!
 """
 
 import sys
+import datetime
 
 from motion_CurrentConfig import *
 from cameraConfig import *
-
 
 ####
 # command line arguments
@@ -20,9 +20,7 @@ if (argc != 2):
 	print "usage: %s [IP Adrress]"
 	quit()
 
-
 IP = argv[1]
-
 
 ####
 # Create python broker
@@ -38,15 +36,13 @@ except RuntimeError,e:
 
 print "Creating NaoCam proxy"
 
-
 try:
 	camProxy = ALProxy("NaoCam")
+	audioProxy = ALProxy("ALAudioPlayer")
 except Exception,e:
 	print "Error when creating NaoCam proxy:"
 	print str(e)
 	exit(1)
-
-
 
 #Register a Generic Video Module (G.V.M.) to the V.I.M.
 camProxy.startFrameGrabber()
@@ -59,7 +55,7 @@ camProxy.setParam(kCameraSaturationID, cSaturation)
 camProxy.setParam(kCameraRedChromaID, cWhiteRed)
 camProxy.setParam(kCameraBlueChromaID, cWhiteBlue)
 camProxy.setParam(kCameraGainID, cGain)
-#setParam(kCameraExposureID, cExposure)
+camProxy.setParam(kCameraExposureID, cExposure)
 
 camProxy.setParam(kCameraAutoGainID, cAutoGain)
 camProxy.setParam(kCameraAutoExpositionID, cAutoExposition)
@@ -105,5 +101,29 @@ conv.close();
 #camProxy.unRegister(nameId)
 camProxy.stopFrameGrabber()
 #More explications in the documentation..
+
+####
+# play shot sound.
+audioProxy.stop()
+audioProxy.playFile("/opt/naoqi/data/wav/module_cnx.wav")
+
+####
+# output CameraConf.scm
+d = datetime.datetime.today()
+fw = open('cameraConf.scm', 'w')
+fw.write(';Camera Settings\n')
+fw.write(';date : ' + d.strftime("%Y-%m-%d %H:%M:%S") + '\n')
+fw.write('\n')
+fw.write('(vc-set-param AWB %d)\n' % cAutoWhiteBalance)
+fw.write('(vc-set-param AGC %d)\n' % cAutoGain)
+fw.write('(vc-set-param AEC %d)\n' % cAutoExposition)
+fw.write('\n')
+fw.write('(vc-set-param Brightness %d)\n' % cBrightness)
+fw.write('(vc-set-param Contrast %d)\n' % cContrast)
+fw.write('(vc-set-param Gain %d)\n' % cGain)
+fw.write('(vc-set-param Exposure %d)\n' % cExposure)
+fw.write('(vc-set-param RedChroma %d)\n' % cWhiteRed)
+fw.write('(vc-set-param BlueChroma %d)\n' % cWhiteBlue)
+fw.close()
 
 print "Test terminated successfully" 
