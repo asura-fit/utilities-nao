@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Utilities-nao" default="all">
+	<property file="build.properties" />
+	<property file="user.properties" />
+
+	<target name="all" depends="deploy" />
+
+	<target name="deploy" if="target.ip">
+		<exec executable="rsync">
+			<arg value="--ignore-existing" />
+			<arg value="${build.tables}" />
+			<arg value="root@${target.ip}:${target.dir}" />
+		</exec>
+	</target>
+</project>
