@@ -14,6 +14,9 @@ Step 2:
     Change configurations in cameraConfig.py.
 Step 3:
     Compile yuyv2yvu.c
+    
+    example : $gcc yuyv2yvu.c -o yuyv2yvu
+    
 Step 4:
     Set AL_DIR.
 Step 5:

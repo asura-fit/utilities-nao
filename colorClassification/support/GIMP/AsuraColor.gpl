@@ -1,0 +1,15 @@
+GIMP Palette
+Name: AsuraColor
+Columns: 0
+#
+255 128   0	Ball
+  0 255 255	Cyan
+  0 255   0	Green
+255 255   0	Yellow
+255   0 128	Pink
+  0   0 255	Blue
+255   0   0	Red
+255 255 255	White
+  0  64  64	Field [reserved]
+  0   0   0	Background
+128 128 128	Ignore
