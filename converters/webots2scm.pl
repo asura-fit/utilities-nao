@@ -24,7 +24,6 @@ while(<>){
   my $time = shift @data;
   $time =~ /(\d+):(\d+):(\d+)/;
   $time = ($1*60 + $2)*1000 + $3;
-  $time *= 5;
   push @times, $time - $lastTime;
   $lastTime = $time;
 

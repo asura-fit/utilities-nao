@@ -5,10 +5,12 @@
 
 	<target name="all" depends="deploy" />
 
-	<target name="deploy" if="target.ip">
+	<target name="deploy">
+		<fail message="target.ip is required." unless="target.ip" />
 		<exec executable="rsync">
-			<arg value="--ignore-existing" />
-			<arg value="${build.tables}" />
+			<arg value="-rRvce" />
+			<arg value="ssh" />
+			<arg line="${build.tables}" />
 			<arg value="root@${target.ip}:${target.dir}" />
 		</exec>
 	</target>
