@@ -10,6 +10,10 @@ from vision_definitions import *
 
 
 ###################################
+# Select Camera
+# cTopCam = 0, cBottomCam = 1
+cSelectCamera = cBottomCam
+
 # Basic Camera Configrations
 
 #Auto Gain (off, on)

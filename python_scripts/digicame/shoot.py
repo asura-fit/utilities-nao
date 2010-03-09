@@ -61,6 +61,8 @@ camProxy.setParam(kCameraVFlipID, cVFlip)
 camProxy.setParam(kCameraLensXID, cLensX)
 camProxy.setParam(kCameraLensYID, cLensY)
 
+camProxy.setParam(kCameraSelectID, cSelectCamera)
+
 time.sleep(1)
 
 #Get a pointer to the video source image and release the image when process is finished
