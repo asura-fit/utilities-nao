@@ -23,34 +23,27 @@ if (argc != 2):
 IP = argv[1]
 
 ####
-# Create python broker
-
-try:
-	broker = ALBroker("pythonBroker", "127.0.0.1", BPORT, IP, PORT)
-except RuntimeError,e:
-	print("cannot connect")
-	exit(1)
+# print
+print "Connect to: Using IP: " + str(IP) + " and port: "  + str(PORT)
 
 ####
-# Create motion proxy
-
-print "Creating NaoCam proxy"
-
+# Create proxy
 try:
-	# camProxy = ALProxy("NaoCam")
+	print "Creating ALVideoDevice proxy ..."
 	camProxy = ALProxy("ALVideoDevice", IP, PORT)
+	print "Creating ALAudioPlayer proxy ..."
 	audioProxy = ALProxy("ALAudioPlayer", IP, PORT)
 except Exception,e:
-	print "Error when creating NaoCam proxy:"
+	print "Error when creating proxy:"
 	print str(e)
 	exit(1)
 
 #Register a Generic Video Module (G.V.M.) to the V.I.M.
 camProxy.startFrameGrabber()
-#nameId = camProxy.register("digicame3py_GVM", cResol, cColor, cFps)
 nameId = camProxy.subscribe("digicame3py_GVM", cResol, cColor, cFps)
 
 #Set cameraConfs (cameraConfig.py)
+print "Setting to camera configuration ..."
 camProxy.setParam(kCameraBrightnessID, cBrightness)
 camProxy.setParam(kCameraContrastID, cContrast)
 camProxy.setParam(kCameraSaturationID, cSaturation)
@@ -95,27 +88,23 @@ else:
 	exit(1)
 conv.write(rawImg[6]);
 conv.close();
-#time.sleep(1)
 
 #camProxy.releaseDirectRawImage(nameId)
 
+#releaseImage
 camProxy.releaseImage(nameId)
+#Unregister the G.V.M.
 camProxy.unsubscribe(nameId)
-
-#seImage(nameId)Unregister the G.V.M.
-#camProxy.unRegister(nameId)
 camProxy.stopFrameGrabber()
-#More explications in the documentation..
 
 ####
 # play shot sound.
 #audioProxy.stop()
 #audioProxy.playFile("/opt/naoqi/data/wav/module_cnx.wav")
-#audioProxy.stop()
-#audioProxy.playFile("/opt/naoqi/data/wav/hello.wav")
 
 ####
 # output CameraConf.scm
+print "writing to CameraConf.scm ..."
 d = datetime.datetime.today()
 fw = open('cameraConf.scm', 'w')
 fw.write(';Camera Settings\n')
@@ -133,4 +122,4 @@ fw.write('(vc-set-param RedChroma %d)\n' % cWhiteRed)
 fw.write('(vc-set-param BlueChroma %d)\n' % cWhiteBlue)
 fw.close()
 
-print "Test terminated successfully" 
+print "SHOOT SUCCESSFUL\n"
