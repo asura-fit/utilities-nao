@@ -37,8 +37,9 @@ except RuntimeError,e:
 print "Creating NaoCam proxy"
 
 try:
-	camProxy = ALProxy("NaoCam")
-	audioProxy = ALProxy("ALAudioPlayer")
+	# camProxy = ALProxy("NaoCam")
+	camProxy = ALProxy("ALVideoDevice", IP, PORT)
+	audioProxy = ALProxy("ALAudioPlayer", IP, PORT)
 except Exception,e:
 	print "Error when creating NaoCam proxy:"
 	print str(e)
@@ -46,7 +47,8 @@ except Exception,e:
 
 #Register a Generic Video Module (G.V.M.) to the V.I.M.
 camProxy.startFrameGrabber()
-nameId = camProxy.register("digicame3py_GVM", cResol, cColor, cFps)
+#nameId = camProxy.register("digicame3py_GVM", cResol, cColor, cFps)
+nameId = camProxy.subscribe("digicame3py_GVM", cResol, cColor, cFps)
 
 #Set cameraConfs (cameraConfig.py)
 camProxy.setParam(kCameraBrightnessID, cBrightness)
@@ -97,15 +99,20 @@ conv.close();
 
 #camProxy.releaseDirectRawImage(nameId)
 
-#Unregister the G.V.M.
+camProxy.releaseImage(nameId)
+camProxy.unsubscribe(nameId)
+
+#seImage(nameId)Unregister the G.V.M.
 #camProxy.unRegister(nameId)
 camProxy.stopFrameGrabber()
 #More explications in the documentation..
 
 ####
 # play shot sound.
-audioProxy.stop()
-audioProxy.playFile("/opt/naoqi/data/wav/module_cnx.wav")
+#audioProxy.stop()
+#audioProxy.playFile("/opt/naoqi/data/wav/module_cnx.wav")
+#audioProxy.stop()
+#audioProxy.playFile("/opt/naoqi/data/wav/hello.wav")
 
 ####
 # output CameraConf.scm
