@@ -63,9 +63,9 @@ cSaturation = 128
 cHue = 0
 
 #Horizontal Flip
-cHFlip = 1
+cHFlip = 0
 #Vertical Flip
-cVFlip = 1
+cVFlip = 0
 
 #LensX
 cLensX = 0
