@@ -13,6 +13,7 @@ from vision_definitions import *
 # Select Camera
 # cTopCam = 0, cBottomCam = 1
 cSelectCamera = cBottomCam
+#cSelectCamera = cTopCam
 
 # Basic Camera Configrations
 

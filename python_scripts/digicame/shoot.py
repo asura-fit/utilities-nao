@@ -32,6 +32,7 @@ try:
 	print "Creating ALVideoDevice proxy ..."
 	camProxy = ALProxy("ALVideoDevice", IP, PORT)
 	print "Creating ALAudioPlayer proxy ..."
+	#audioProxy = ALProxy("ALAudioPlayer", IP, 54010)
 	audioProxy = ALProxy("ALAudioPlayer", IP, PORT)
 except Exception,e:
 	print "Error when creating proxy:"
@@ -44,6 +45,7 @@ nameId = camProxy.subscribe("digicame3py_GVM", cResol, cColor, cFps)
 
 #Set cameraConfs (cameraConfig.py)
 print "Setting to camera configuration ..."
+print "----------"
 camProxy.setParam(kCameraBrightnessID, cBrightness)
 camProxy.setParam(kCameraContrastID, cContrast)
 camProxy.setParam(kCameraSaturationID, cSaturation)
@@ -61,7 +63,11 @@ camProxy.setParam(kCameraVFlipID, cVFlip)
 camProxy.setParam(kCameraLensXID, cLensX)
 camProxy.setParam(kCameraLensYID, cLensY)
 
+print "CameraSelect: " + ("TOP" if cSelectCamera == cTopCam else "BOTTOM")
 camProxy.setParam(kCameraSelectID, cSelectCamera)
+
+print "----------"
+print "Setting done."
 
 time.sleep(1)
 
@@ -101,8 +107,12 @@ camProxy.stopFrameGrabber()
 
 ####
 # play shot sound.
-#audioProxy.stop()
-#audioProxy.playFile("/opt/naoqi/data/wav/module_cnx.wav")
+try:
+	audioProxy.post.setSystemVolume(100)
+	audioProxy.post.stop()
+	audioProxy.post.playFile("/opt/naoqi/data/wav/bip_gentle.wav")
+except Exception,e:
+	print "error: sound player."
 
 ####
 # output CameraConf.scm
