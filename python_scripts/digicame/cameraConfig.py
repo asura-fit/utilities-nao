@@ -5,9 +5,7 @@
  
  Parameter is shown vision_definitions.py
 """
-
 from vision_definitions import *
-
 
 ###################################
 # Select Camera
@@ -15,12 +13,13 @@ from vision_definitions import *
 cSelectCamera = cBottomCam
 #cSelectCamera = cTopCam
 
+###################################
 # Basic Camera Configrations
 
 #Auto Gain (off, on)
 cAutoGain = OFF
 #Auto Exposition
-cAutoExposition = ON
+cAutoExposition = OFF
 #Auto WhiteBalance
 cAutoWhiteBalance = OFF
 
@@ -35,7 +34,7 @@ cWhiteBlue = 130
 cGain = 6
 
 #Exposure [?, ?]
-cExposure = 42
+cExposure = 300
 
 
 ###################################

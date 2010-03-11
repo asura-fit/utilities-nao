@@ -16,11 +16,12 @@ from cameraConfig import *
 argv = sys.argv
 argc = len(argv)
 
-if (argc != 2):
-	print "usage: %s [IP Adrress]"
+if (argc != 3):
+	print "usage: %s [IP Adrress] [Shoot Count]" % argv[0]
 	quit()
 
 IP = argv[1]
+Count = int(argv[2])
 
 ####
 # print
@@ -73,29 +74,29 @@ time.sleep(1)
 
 #Get a pointer to the video source image and release the image when process is finished
 #rawImg = camProxy.getDirectRawImageRemote(nameId)
+for x in range(Count):
+	rawImg = camProxy.getImageRemote(nameId)
+	#  tstamp = rawImg[4] << 64 + rawImg[5];
+	tstamp = ((rawImg[4] << 32) + rawImg[5]);
 
-rawImg = camProxy.getImageRemote(nameId)
-  
-#  tstamp = rawImg[4] << 64 + rawImg[5];
-tstamp = ((rawImg[4] << 32) + rawImg[5]);
-  
-if rawImg[2] == 1:
-	print "write image to digicame%d.pgm" % (tstamp)
-	conv = os.popen("rawtopgm %d %d > digicame%d.pgm" % (rawImg[0], rawImg[1], tstamp), 'wb')
-elif rawImg[2] == 3:
-	print "write image to digicame%d.ppm" % (tstamp)
-	conv = os.popen("rawtoppm %d %d > digicame%d.ppm" % (rawImg[0], rawImg[1], tstamp), 'wb')
-#	yuvu to yuv
-elif rawImg[2] == 2:
-	print "write image to digicame%d.ppm" % (tstamp)
-	conv = os.popen("./yuyv2yuv | rawtoppm %d %d > ./ppm/digicame%d.ppm" % (rawImg[0], rawImg[1], tstamp), 'wb')
-
-else:
-	print "Error unsupported."
-	print "rawImg[2]: %d" % (rawImg[2])
-	exit(1)
-conv.write(rawImg[6]);
-conv.close();
+	if rawImg[2] == 1:
+		print "write image to digicame%d.pgm" % (tstamp)
+		conv = os.popen("rawtopgm %d %d > digicame%d.pgm" % (rawImg[0], rawImg[1], tstamp), 'wb')
+	elif rawImg[2] == 3:
+		print "write image to digicame%d.ppm" % (tstamp)
+		conv = os.popen("rawtoppm %d %d > digicame%d.ppm" % (rawImg[0], rawImg[1], tstamp), 'wb')
+	#	yuvu to yuv
+	elif rawImg[2] == 2:
+		print "write image to digicame%d.ppm" % (tstamp)
+		conv = os.popen("./yuyv2yuv | rawtoppm %d %d > ./ppm/digicame%d.ppm" % (rawImg[0], rawImg[1], tstamp), 'wb')
+	else:
+		print "Error unsupported."
+		print "rawImg[2]: %d" % (rawImg[2])
+		exit(1)
+	
+	conv.write(rawImg[6]);
+	conv.close();
+	time.sleep(1)
 
 #camProxy.releaseDirectRawImage(nameId)
 
