@@ -4,18 +4,35 @@ shoot.py
 shoot one photo(yuv).
 th_95, Shoot The Bullet!!
 """
-
+import os
 import sys
+import time
 import datetime
 
-from motion_CurrentConfig import *
+aldir_env = os.environ.get("AL_DIR")
+
+if aldir_env is None:
+	print "The environnement variable AL_DIR is not set, aborting..."
+	exit(1)
+aldir = os.path.abspath(aldir_env)
+alpath = os.path.join(aldir,"extern/python/aldebaran")
+sys.path.append(alpath)
+try:
+	from naoqi import ALProxy
+	from naoqi import ALBroker
+except ImportError, err:
+	print "Unable to import naoqi module: " + str(err)
+	exit(1)
+	
 from cameraConfig import *
+
+IP = "192.168.1.51" #default ip
+PORT = 9559 #default port
 
 ####
 # command line arguments
 argv = sys.argv
 argc = len(argv)
-
 if (argc != 3):
 	print "usage: %s [IP Adrress] [Shoot Count]" % argv[0]
 	quit()
@@ -33,7 +50,6 @@ try:
 	print "Creating ALVideoDevice proxy ..."
 	camProxy = ALProxy("ALVideoDevice", IP, PORT)
 	print "Creating ALAudioPlayer proxy ..."
-	#audioProxy = ALProxy("ALAudioPlayer", IP, 54010)
 	audioProxy = ALProxy("ALAudioPlayer", IP, PORT)
 except Exception,e:
 	print "Error when creating proxy:"
@@ -109,7 +125,6 @@ camProxy.stopFrameGrabber()
 ####
 # play shot sound.
 try:
-	audioProxy.post.setSystemVolume(100)
 	audioProxy.post.stop()
 	audioProxy.post.playFile("/opt/naoqi/data/wav/bip_gentle.wav")
 except Exception,e:
